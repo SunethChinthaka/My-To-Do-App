@@ -36,13 +36,18 @@ public class AddToDo extends AppCompatActivity {
                 String userDesc = desc.getText().toString();
                 long started = System.currentTimeMillis();
 
-
-                ToDo toDo=new ToDo(userTitle,userDesc,started,0);
-                dbHandler.addToDo(toDo);
-                Toast toast=Toast.makeText(getApplicationContext(),"ToDo Added",Toast.LENGTH_SHORT);
-                toast.show();
-                startActivity(new Intent(context,MainActivity.class));
-
+                if (title.getText().toString().equals("")){
+                    title.setError("Mandatory Field");
+                } else if (desc.getText().toString().equals("")) {
+                    desc.setError("Mandatory Field");
+                }
+                else {
+                    ToDo toDo=new ToDo(userTitle,userDesc,started,0);
+                    dbHandler.addToDo(toDo);
+                    Toast toast=Toast.makeText(getApplicationContext(),"ToDo Added",Toast.LENGTH_SHORT);
+                    toast.show();
+                    startActivity(new Intent(context,MainActivity.class));
+                }
 
             }
         });

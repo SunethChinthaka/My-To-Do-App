@@ -8,22 +8,23 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="273dp"
+        android:layout_width="412dp"
         android:layout_height="54dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="4dp"
         android:background="@android:color/holo_blue_dark"
         android:text="Add a New ToDo"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTitle"
-        android:layout_width="258dp"
-        android:layout_height="46dp"
+        android:layout_width="289dp"
+        android:layout_height="47dp"
         android:layout_marginTop="112dp"
         android:background="@android:color/darker_gray"
         android:ems="10"
@@ -38,8 +39,8 @@
 
     <EditText
         android:id="@+id/editTextDescription"
-        android:layout_width="253dp"
-        android:layout_height="92dp"
+        android:layout_width="290dp"
+        android:layout_height="106dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/darker_gray"
         android:ems="10"

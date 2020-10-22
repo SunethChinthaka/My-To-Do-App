@@ -43,12 +43,21 @@ public class EditToDo extends AppCompatActivity {
                 String decText = des.getText().toString();
                 updateDate = System.currentTimeMillis();
 
-                ToDo toDo = new ToDo(Integer.parseInt(id),titleText,decText,updateDate,0);
-                int state = dbHandler.updateSingleToDo(toDo);
-                System.out.println(state);
-                Toast toast=Toast.makeText(getApplicationContext(),"Update Successfully",Toast.LENGTH_SHORT);
-                toast.show();
-                startActivity(new Intent(context,MainActivity.class));
+                if (title.getText().toString().equals("")){
+                    title.setError("Mandatory Field");
+                }else if (des.getText().toString().equals("")) {
+                    des.setError("Mandatory Field");
+                }
+                else{
+                    ToDo toDo = new ToDo(Integer.parseInt(id),titleText,decText,updateDate,0);
+                    int state = dbHandler.updateSingleToDo(toDo);
+                    System.out.println(state);
+                    Toast toast=Toast.makeText(getApplicationContext(),"Update Successfully",Toast.LENGTH_SHORT);
+                    toast.show();
+                    startActivity(new Intent(context,MainActivity.class));
+                }
+
+
             }
         });
     }
