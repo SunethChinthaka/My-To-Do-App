@@ -92,11 +92,50 @@ public class DbHandler extends SQLiteOpenHelper {
         return toDoList;
     }
 
-    // Delete toDos
+    // Delete toDo
 
     public void deleteToDo(int id){
         SQLiteDatabase sqLiteDatabase=getWritableDatabase();
         sqLiteDatabase.delete(TABLE_NAME,"id =?",new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
+    }
+    // Get a single toDo
+    public ToDo getSingleToDo(int id){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        Cursor cursor = sqLiteDatabase.query(TABLE_NAME,new String[]{ID,TITLE,DESCRIPTION,STARTED, FINISHED},
+                ID + "= ?",new String[]{String.valueOf(id)}
+                ,null,null,null);
+
+        ToDo toDo;
+        if(cursor != null){
+            cursor.moveToFirst();
+            toDo = new ToDo(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getLong(3),
+                    cursor.getLong(4)
+            );
+            return toDo;
+        }
+        return null;
+    }
+    // Update a single todo
+    public int updateSingleToDo(ToDo toDo){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(TITLE,toDo.getTitle());
+        contentValues.put(DESCRIPTION, toDo.getDescription());
+        contentValues.put(STARTED,toDo.getStarted());
+        contentValues.put(FINISHED,toDo.getFinished());
+
+        int status = sqLiteDatabase.update(TABLE_NAME,contentValues,ID +" =?",
+                new String[]{String.valueOf(toDo.getId())});
+
+        sqLiteDatabase.close();
+        return status;
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddToDo extends AppCompatActivity {
 
@@ -35,9 +36,11 @@ public class AddToDo extends AppCompatActivity {
                 String userDesc = desc.getText().toString();
                 long started = System.currentTimeMillis();
 
+
                 ToDo toDo=new ToDo(userTitle,userDesc,started,0);
                 dbHandler.addToDo(toDo);
-
+                Toast toast=Toast.makeText(getApplicationContext(),"ToDo Added",Toast.LENGTH_SHORT);
+                toast.show();
                 startActivity(new Intent(context,MainActivity.class));
 
 

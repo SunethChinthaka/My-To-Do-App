@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         todo.setFinished(System.currentTimeMillis());
+                        dbHandler.updateSingleToDo(todo);
                         startActivity(new Intent(context,MainActivity.class));
                     }
                 });
@@ -79,8 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNeutralButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(context,EditToDo.class));
-
+                        Intent intent=new Intent(context,EditToDo.class);
+                        intent.putExtra("id",String.valueOf(todo.getId()));
+                        startActivity(intent);
                     }
                 });
                 builder.show();
