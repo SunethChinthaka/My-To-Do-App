@@ -26,9 +26,18 @@ public class AddToDo extends AppCompatActivity {
         add = findViewById(R.id.buttonAdd);
         context = this;
 
+        dbHandler=new DbHandler(context);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String userTitle = title.getText().toString();
+                String userDesc = desc.getText().toString();
+                long started = System.currentTimeMillis();
+
+                ToDo toDo=new ToDo(userTitle,userDesc,started,0);
+                dbHandler.addToDo(toDo);
+
                 startActivity(new Intent(context,MainActivity.class));
 
 
